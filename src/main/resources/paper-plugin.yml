@@ -1,4 +1,4 @@
-name: Ancient Mystery
+name: AncientMystery
 version: '${project.version}'
 main: gg.quartzdev.ancientmystery.AncientMystery
 api-version: '1.20'
