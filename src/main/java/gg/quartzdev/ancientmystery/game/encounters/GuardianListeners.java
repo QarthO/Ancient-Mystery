@@ -44,9 +44,6 @@ public class GuardianListeners implements Listener {
     }
 
     public void onGuardianDamage(EntityDamageByEntityEvent event){
-        if(event.getEntity().getType() != EntityType.GUARDIAN){
-            return;
-        }
 
     }
 

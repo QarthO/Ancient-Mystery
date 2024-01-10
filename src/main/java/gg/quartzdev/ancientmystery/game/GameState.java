@@ -4,7 +4,9 @@ public enum GameState {
 
     INCOMPLETE,
     IDLE,
-    RUNNING,
+    STARTING,
+    ENCOUNTER_GUARDIAN,
+    ENCOUNTER_,
     FINISHED,
     BROKEN;
 
