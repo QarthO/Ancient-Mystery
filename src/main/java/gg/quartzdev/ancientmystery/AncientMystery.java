@@ -1,5 +1,6 @@
 package gg.quartzdev.ancientmystery;
 
+import gg.quartzdev.ancientmystery.game.GameManager;
 import gg.quartzdev.ancientmystery.game.player.GamePlayer;
 import gg.quartzdev.ancientmystery.listeners.PlayerListener;
 import org.bukkit.Bukkit;
@@ -14,6 +15,7 @@ import java.util.UUID;
 public final class AncientMystery extends JavaPlugin {
 
     private static AncientMystery instance;
+    public GameManager gameManager;
     public static AncientMystery getInstance(){
         return instance;
     }
@@ -23,8 +25,11 @@ public final class AncientMystery extends JavaPlugin {
     @Override
     public void onEnable() {
         instance = this;
+        this.gameManager = new GameManager();
         Bukkit.getPluginManager().registerEvents(new PlayerListener(), this);
         updateAllHealth();
+        gameManager.create();
+        gameManager.globalClock();
 
     }
 
