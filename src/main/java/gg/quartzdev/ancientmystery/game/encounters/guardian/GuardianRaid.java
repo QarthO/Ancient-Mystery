@@ -33,11 +33,6 @@ public class GuardianRaid extends Encounter {
     }
 
     public void spawnBoss(){
-        ElderGuardian boss = (ElderGuardian) bossSpawnLocation.getWorld().spawnEntity(bossSpawnLocation, this.BOSS_TYPE, CreatureSpawnEvent.SpawnReason.CUSTOM);
-        PdcUtil.brandMob(this.key, boss, this.gameId);
-        AttributeInstance maxHealth = boss.getAttribute(Attribute.GENERIC_MAX_HEALTH);
-        maxHealth.setBaseValue(BOSS_MAX_HEALTH);
-        boss.setHealth(this.BOSS_MAX_HEALTH);
     }
 
     public void startRaid(){
