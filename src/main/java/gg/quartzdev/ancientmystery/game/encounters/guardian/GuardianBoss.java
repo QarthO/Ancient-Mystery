@@ -23,11 +23,11 @@ public class GuardianBoss extends EncounterMob {
     }
 
     public void spawn(){
-        ElderGuardian boss = (ElderGuardian) spawnLocation.getWorld().spawnEntity(spawnLocation, this, CreatureSpawnEvent.SpawnReason.CUSTOM);
-        PdcUtil.brandMob(this.key, boss, this.gameId);
-        AttributeInstance maxHealth = boss.getAttribute(Attribute.GENERIC_MAX_HEALTH);
-        maxHealth.setBaseValue(BOSS_MAX_HEALTH);
-        boss.setHealth(this.BOSS_MAX_HEALTH);
+//        ElderGuardian boss = (ElderGuardian) spawnLocation.getWorld().spawnEntity(spawnLocation, this, CreatureSpawnEvent.SpawnReason.CUSTOM);
+//        PdcUtil.brandMob(this, boss, this.gameId);
+//        AttributeInstance maxHealth = boss.getAttribute(Attribute.GENERIC_MAX_HEALTH);
+//        maxHealth.setBaseValue(BOSS_MAX_HEALTH);
+//        boss.setHealth(this.BOSS_MAX_HEALTH);
     }
 
 

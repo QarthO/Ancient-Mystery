@@ -1,8 +1,11 @@
 package gg.quartzdev.ancientmystery;
 
+import gg.quartzdev.ancientmystery.data.Confiq;
 import gg.quartzdev.ancientmystery.game.GameManager;
 import gg.quartzdev.ancientmystery.game.player.GamePlayer;
 import gg.quartzdev.ancientmystery.listeners.PlayerListener;
+import gg.quartzdev.ancientmystery.util.Loqqer;
+import org.bstats.bukkit.Metrics;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -15,7 +18,8 @@ import java.util.UUID;
 public final class AncientMystery extends JavaPlugin {
 
     private static AncientMystery instance;
-    public GameManager gameManager;
+    public Loqqer logger;
+    public Confiq config;
     public static AncientMystery getInstance(){
         return instance;
     }
@@ -25,17 +29,31 @@ public final class AncientMystery extends JavaPlugin {
     @Override
     public void onEnable() {
         instance = this;
-        this.gameManager = new GameManager();
-        Bukkit.getPluginManager().registerEvents(new PlayerListener(), this);
-        updateAllHealth();
-        gameManager.create();
-        gameManager.globalClock();
+        this.logger = new Loqqer();
+        this.config = new Confiq();
+
+        this.enableMetrics();
+        this.registerEvents();
 
     }
 
     @Override
     public void onDisable() {
         // Plugin shutdown logic
+    }
+
+    public void enableMetrics(){
+        int pluginId = 20709;
+        Metrics metrics = new Metrics(instance, pluginId);
+    }
+
+    public void registerEvents(){
+        Bukkit.getPluginManager().registerEvents(new PlayerListener(), this);
+    }
+
+    @SuppressWarnings("UnstableApiUsage")
+    public String getVersion(){
+        return instance.getPluginMeta().getVersion();
     }
 
     public void updateAllHealth(){

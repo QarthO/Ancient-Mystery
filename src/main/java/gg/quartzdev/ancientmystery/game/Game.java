@@ -39,7 +39,7 @@ public class Game {
     }
 
     public Location getJoinLocation(){
-
+        return null;
     }
 
     public void finish(){

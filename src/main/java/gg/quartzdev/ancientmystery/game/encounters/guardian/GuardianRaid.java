@@ -39,6 +39,16 @@ public class GuardianRaid extends Encounter {
         spawnBoss();
     }
 
+    public void tasks(){
+
+
+
+    }
+
+    public void trySpawnBlaze(){
+
+    }
+
     public void onBossDamage(EntityDamageByEntityEvent event){
 
 //        Makes sure mob belongs to this raid
