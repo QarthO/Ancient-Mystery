@@ -9,6 +9,8 @@ import java.util.UUID;
 
 public class PdcUtil {
 
+    public static NamespacedKey brandKey = new NamespacedKey()
+
     /**
      * Assigns the Game ID to a mob
      * @param key - the namespace key for the encounter

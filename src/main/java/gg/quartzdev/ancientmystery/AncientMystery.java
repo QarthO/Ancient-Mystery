@@ -7,6 +7,7 @@ import gg.quartzdev.ancientmystery.listeners.PlayerListener;
 import gg.quartzdev.ancientmystery.util.Loqqer;
 import org.bstats.bukkit.Metrics;
 import org.bukkit.Bukkit;
+import org.bukkit.NamespacedKey;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.jetbrains.annotations.NotNull;
@@ -17,12 +18,12 @@ import java.util.UUID;
 
 public final class AncientMystery extends JavaPlugin {
 
-    private static AncientMystery instance;
+    public static AncientMystery instance;
     public Loqqer logger;
     public Confiq config;
-    public static AncientMystery getInstance(){
-        return instance;
-    }
+
+//    PDC keys
+    public NamespacedKey gameId;
 
     public HashMap<UUID, GamePlayer> gamePlayers = new HashMap<>();
 
