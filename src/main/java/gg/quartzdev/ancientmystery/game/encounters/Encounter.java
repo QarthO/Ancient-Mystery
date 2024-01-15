@@ -12,7 +12,7 @@ public abstract class Encounter {
     public EncounterState state;
 
     public Encounter(UUID gameId){
-        this.plugin = AncientMystery.getInstance();
+        this.plugin = AncientMystery.instance;
         this.gameId = gameId;
         this.state = EncounterState.IDLE;
     }

@@ -18,8 +18,6 @@ public class PdcUtil {
      * @param gameId - the game id the mob was spawned in
      */
     public static void brandMob(NamespacedKey key, Entity entity, UUID gameId){
-        PersistentDataContainer pdc = entity.getPersistentDataContainer();
-        pdc.set(key, DataType.UUID, gameId);
     }
 
     public static UUID getMobBrand(NamespacedKey key, Entity entity){

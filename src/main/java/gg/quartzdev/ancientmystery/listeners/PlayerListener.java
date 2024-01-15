@@ -15,7 +15,7 @@ public class PlayerListener implements Listener {
     AncientMystery plugin;
 
     public PlayerListener(){
-        this.plugin = AncientMystery.getInstance();
+        this.plugin = AncientMystery.instance;
     }
 
     @EventHandler
@@ -33,4 +33,7 @@ public class PlayerListener implements Listener {
         gamePlayer.damage(damage);
         event.setDamage(0);
     }
+
+    @EventHandler
+    public void onD()
 }

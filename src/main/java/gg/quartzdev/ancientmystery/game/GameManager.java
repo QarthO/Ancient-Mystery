@@ -14,7 +14,7 @@ public class GameManager {
     HashMap<UUID, Game> games;
 
     public GameManager(){
-        this.plugin = AncientMystery.getInstance();
+        this.plugin = AncientMystery.instance;
         this.games = new HashMap<>();
     }
 

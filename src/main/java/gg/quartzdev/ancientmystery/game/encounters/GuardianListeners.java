@@ -17,11 +17,8 @@ import java.util.List;
 public class GuardianListeners implements Listener {
 
     AncientMystery plugin;
-    GameManager gameManager;
-
     public GuardianListeners(){
-        this.plugin = AncientMystery.getInstance();
-        this.gameManager = this.plugin.gameManager;
+        this.plugin = AncientMystery.instance;
     }
 
     @EventHandler

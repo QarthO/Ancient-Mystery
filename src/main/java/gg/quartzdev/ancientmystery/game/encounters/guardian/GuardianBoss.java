@@ -1,15 +1,9 @@
 package gg.quartzdev.ancientmystery.game.encounters.guardian;
 
-import gg.quartzdev.ancientmystery.game.encounters.EncounterMob;
-import gg.quartzdev.ancientmystery.util.PdcUtil;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.NamespacedKey;
-import org.bukkit.attribute.Attribute;
-import org.bukkit.attribute.AttributeInstance;
-import org.bukkit.entity.ElderGuardian;
 import org.bukkit.entity.EntityType;
-import org.bukkit.event.entity.CreatureSpawnEvent;
 
 import java.util.UUID;
 

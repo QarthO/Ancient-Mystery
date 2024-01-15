@@ -21,8 +21,7 @@ public class CommandManager extends Command {
 
     public CommandManager(String name){
         super(name);
-        aliases.add("xpboosts");
-//        super.setPermission("qxpboosts.command");
+        aliases.add("am");
         super.setAliases(aliases);
 
         commandsMap.put("",         new CMD("version", "admin"));

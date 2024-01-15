@@ -23,7 +23,7 @@ public final class AncientMystery extends JavaPlugin {
     public Confiq config;
 
 //    PDC keys
-    public NamespacedKey gameId;
+    public NamespacedKey gameKey;
 
     public HashMap<UUID, GamePlayer> gamePlayers = new HashMap<>();
 
