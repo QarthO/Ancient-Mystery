@@ -28,6 +28,7 @@ public class GamePlayer {
 
     public void damage(int damage){
         this.playerHealth -= damage;
+        this.updateHealthBar();
     }
 
     public void heal(int heal){
@@ -37,5 +38,9 @@ public class GamePlayer {
     public void kill(){
         this.playerHealth = 0;
         this.player.setHealth(0);
+    }
+
+    public void onDamageHandler(){
+
     }
 }

@@ -1,5 +1,6 @@
 package gg.quartzdev.ancientmystery;
 
+import gg.quartzdev.ancientmystery.commands.CommandManager;
 import gg.quartzdev.ancientmystery.data.Confiq;
 import gg.quartzdev.ancientmystery.game.GameManager;
 import gg.quartzdev.ancientmystery.game.player.GamePlayer;
@@ -36,6 +37,7 @@ public final class AncientMystery extends JavaPlugin {
         this.enableMetrics();
         this.registerEvents();
 
+        new CommandManager(this.getName().toLowerCase());
     }
 
     @Override
@@ -56,7 +58,6 @@ public final class AncientMystery extends JavaPlugin {
     public String getVersion(){
         return instance.getPluginMeta().getVersion();
     }
-
     public void updateAllHealth(){
         long delay = 1;
         long period = 40;

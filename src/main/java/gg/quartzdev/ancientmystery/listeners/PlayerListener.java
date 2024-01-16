@@ -33,7 +33,4 @@ public class PlayerListener implements Listener {
         gamePlayer.damage(damage);
         event.setDamage(0);
     }
-
-    @EventHandler
-    public void onD()
 }

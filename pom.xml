@@ -30,7 +30,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-shade-plugin</artifactId>
-                <version>3.2.4</version>
+                <version>3.5.1</version>
                 <configuration>
                     <relocations>
                         <relocation>
@@ -57,7 +57,7 @@
 <!--                    Mac-->
 <!--                    <outputDirectory>/Users/derek/Minecraft/Server/Local Dev Server/plugins</outputDirectory>-->
 <!--                    Windows-->
-<!--                    <outputDirectory>C:\Users\derek\Documents\Minecraft\Server\Pufferfish 1.20.4\plugins\update</outputDirectory>-->
+                    <outputDirectory>C:\Users\derek\Documents\Minecraft\Server\Pufferfish 1.20.4\plugins\update</outputDirectory>
                 </configuration>
             </plugin>
         </plugins>

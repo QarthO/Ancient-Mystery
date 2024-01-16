@@ -1,0 +1,9 @@
+requires-permission: true
+
+# Maxmimum players per game
+max-players: 4
+# Minimum players required to start a game
+min-players: 2
+
+# Player health
+player-health: 200
