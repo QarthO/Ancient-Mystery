@@ -33,6 +33,7 @@ public abstract class qCMD {
         return this.tabCompletionLogic(sender, args);
     }
     public abstract Iterable<String> tabCompletionLogic(CommandSender sender, String[] args);
+
     public boolean hasPermission(CommandSender sender){
 //        If sender is console
         if(!(sender instanceof Player)) return true;

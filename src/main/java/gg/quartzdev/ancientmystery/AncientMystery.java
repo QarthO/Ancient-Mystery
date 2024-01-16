@@ -22,17 +22,17 @@ public final class AncientMystery extends JavaPlugin {
     public static AncientMystery instance;
     public Loqqer logger;
     public Confiq config;
-
-//    PDC keys
     public NamespacedKey gameKey;
+    public GameManager gameManager;
 
-    public HashMap<UUID, GamePlayer> gamePlayers = new HashMap<>();
 
     @Override
     public void onEnable() {
         instance = this;
         this.logger = new Loqqer();
         this.config = new Confiq();
+        this.gameKey = new NamespacedKey(instance, "game-id");
+        this.gameManager = new GameManager();
 
         this.enableMetrics();
         this.registerEvents();
@@ -57,15 +57,6 @@ public final class AncientMystery extends JavaPlugin {
     @SuppressWarnings("UnstableApiUsage")
     public String getVersion(){
         return instance.getPluginMeta().getVersion();
-    }
-    public void updateAllHealth(){
-        long delay = 1;
-        long period = 40;
-        Bukkit.getScheduler().runTaskTimer(instance, () -> {
-            for(GamePlayer gPlayer : gamePlayers.values()){
-                gPlayer.updateHealthBar();
-            }
-        }, delay, period);
     }
 
     public boolean isGamePlayer(UUID playerId){
