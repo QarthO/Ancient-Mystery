@@ -23,17 +23,17 @@ public class PlayerListener implements Listener {
     @EventHandler
     public void onJoin(PlayerJoinEvent event){
         Player player = event.getPlayer();
-        plugin.addGamePlayer(player);
+//        plugin.addGamePlayer(player);
     }
 
     @EventHandler
     public void onDamage(EntityDamageEvent event){
-        if(!(event.getEntity() instanceof Player player)) return;
-        GamePlayer gamePlayer = plugin.getGamePlayer(player);
-        if(gamePlayer == null) return;
-        int damage = (int) (event.getDamage()*10);
-        gamePlayer.damage(damage);
-        event.setDamage(0);
+//        if(!(event.getEntity() instanceof Player player)) return;
+//        GamePlayer gamePlayer = plugin.getGamePlayer(player);
+//        if(gamePlayer == null) return;
+//        int damage = (int) (event.getDamage()*10);
+//        gamePlayer.damage(damage);
+//        event.setDamage(0);
     }
     @EventHandler
     public void onInventoryClick(InventoryClickEvent event){

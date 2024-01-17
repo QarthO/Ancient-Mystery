@@ -3,14 +3,16 @@ package gg.quartzdev.ancientmystery.util;
 public enum Messages {
 
     //    Prefix
-    CONSOLE_PREFIX("<gray>[<red>q<aqua>Exposed<gray>]"),
-    CHAT_PREFIX("<red>q<aqua>Exposed <bold><gray>></bold>"),
+    CONSOLE_PREFIX("<gray>[<red>q<aqua>Ancient-Mystery<gray>]"),
+    CHAT_PREFIX("<red>q<aqua>Ancient-Mystery <bold><gray>></bold>"),
 
     //    Generic Plugin
     PLUGIN_INFO("<prefix> <green>Running version <gray><version>"),
     RELOAD_COMPLETE("<prefix> <green>Config reloaded"),
     ERROR_CMD_NOT_FOUND("<prefix> <red>Error: Command not found: <yellow><cmd>"),
     ERROR_NO_PERMISSION("<prefix> <red>Error: You don't have permission to perform this"),
+    ERROR_PLAYER_ONLY_COMMAND("<prefix> <red>Error: You must be a player to run this command"),
+    ERROR_CONSOLE_ONLY_COMMAND("<prefix> <red>Error: This command can only be ran from the console"),
 
     //    Generic File
     FILE_CREATED("<prefix> <green>Created file: <yellow><file>"),

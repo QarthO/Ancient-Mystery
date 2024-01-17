@@ -4,7 +4,6 @@ import gg.quartzdev.ancientmystery.util.Messages;
 import gg.quartzdev.ancientmystery.util.Sender;
 import org.bukkit.Bukkit;
 import org.bukkit.command.Command;
-import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.util.StringUtil;
 import org.jetbrains.annotations.NotNull;
@@ -26,6 +25,8 @@ public class CommandManager extends Command {
 
         commandsMap.put("",         new CMD("version", "admin"));
         commandsMap.put("reload",   new CMDreload("reload", "admin"));
+        commandsMap.put("join",     new CMDjoin("join", "player"));
+        commandsMap.put("start",     new CMDstart("start", "player"));
 
         Bukkit.getCommandMap().register(name, this);
     }

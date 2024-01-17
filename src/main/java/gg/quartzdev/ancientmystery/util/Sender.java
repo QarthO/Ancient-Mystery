@@ -27,7 +27,7 @@ public class Sender {
 
     }
 
-    public static void sendActionBar(Player player, String message){
+    public static void actionBar(Player player, String message){
         player.sendActionBar(parse(message, false));
     }
 

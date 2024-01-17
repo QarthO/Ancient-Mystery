@@ -1,20 +1,23 @@
 package gg.quartzdev.ancientmystery.commands;
 
 import gg.quartzdev.ancientmystery.AncientMystery;
-import gg.quartzdev.ancientmystery.gui.GamesUI;
+import gg.quartzdev.ancientmystery.game.GameManager;
 import gg.quartzdev.ancientmystery.util.Messages;
 import gg.quartzdev.ancientmystery.util.Sender;
+import org.bukkit.Difficulty;
 import org.bukkit.command.CommandSender;
-import org.bukkit.command.ConsoleCommandSender;
 import org.bukkit.entity.Player;
 
-public class CMDjoin extends qCMD {
+public class CMDstart extends qCMD {
 
     AncientMystery plugin;
+    GameManager gameManager;
 
-    public CMDjoin(String cmdName, String group) {
+    public CMDstart(String cmdName, String group) {
         super(cmdName, group);
         this.plugin = AncientMystery.instance;
+        this.gameManager = this.plugin.gameManager;
+
     }
 
     @Override
@@ -23,8 +26,9 @@ public class CMDjoin extends qCMD {
             Sender.message(sender, Messages.ERROR_PLAYER_ONLY_COMMAND);
             return false;
         }
-        new GamesUI(player);
-        return true;
+        gameManager.create(Difficulty.NORMAL, player);
+        player.sendMessage("Game created, join");
+        return false;
     }
 
     @Override

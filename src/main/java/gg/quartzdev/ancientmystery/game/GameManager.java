@@ -2,8 +2,10 @@ package gg.quartzdev.ancientmystery.game;
 
 import gg.quartzdev.ancientmystery.AncientMystery;
 import org.bukkit.Bukkit;
+import org.bukkit.Difficulty;
 import org.bukkit.entity.Player;
 
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.UUID;
 import java.util.concurrent.TimeUnit;
@@ -11,22 +13,26 @@ import java.util.concurrent.TimeUnit;
 public class GameManager {
 
     AncientMystery plugin;
-    HashMap<UUID, Game> games;
+    HashMap<UUID, Raid> games;
 
     public GameManager(){
         this.plugin = AncientMystery.instance;
         this.games = new HashMap<>();
     }
 
-    public void create(){
-        Game game = new Game();
-        games.put(game.gameId, game);
-        game.gameState = GameState.RUNNING;
+    public Collection<Raid> getGames(){
+        return games.values();
+    }
+
+    public void create(Difficulty difficulty, Player creator){
+        Raid raid = new Raid(difficulty, creator);
+        games.put(raid.id, raid);
+        raid.gameState = GameState.RUNNING;
     }
 
     public void delete(UUID gameId){
-        Game game = games.get(gameId);
-        if(game != null){
+        Raid raid = games.get(gameId);
+        if(raid != null){
             games.remove(gameId);
         }
     }
@@ -35,9 +41,9 @@ public class GameManager {
         long delay = 0;
         long interval = 1;
         Bukkit.getAsyncScheduler().runAtFixedRate(plugin, task -> {
-            for(Game game : games.values()){
-                if(game.gameState != GameState.RUNNING) continue;
-                game.tickTime();
+            for(Raid raid : games.values()){
+                if(raid.gameState != GameState.RUNNING) continue;
+                raid.tickTime();
             }
         }, delay, interval, TimeUnit.SECONDS);
     }

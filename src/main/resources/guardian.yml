@@ -1,0 +1,32 @@
+encounter:
+    boss:
+      type: ELDER_GUARDIAN
+      spawn-location: null
+      hp: 80 # default
+      shields: 5
+#    At this number of minions spawned players start to recieve negative effects
+    mob-threshold:
+      count: 10
+      effects:
+        - POISON:2
+    minion:
+      type: BLAZE
+      hp: 20 # default
+#      The effect of the item is hardcoded, but you can customize what the item is and how many drop
+      loot:
+        item: GLOWSTONE_DUST
+        count: 1
+      spawn:
+#        how often should these spawn (in seconds)
+        interval: 12
+#        how many spawn at every interval
+        count: 1
+#        how large of an area around the spawn location should the mob spawn in
+#        *(so the mob doesnt spawn in the exact same spot everytime)
+        radius: 5
+#        When this mob is set to spawn, how should it pick its location(s). Possible Values:
+#        RANDOM_#:  Randomly picks # amount of locations (ie. Random3 will randomly pick 3 of the locations)
+#        CYCLE:     Cycles thru each location
+#        ALL:       Spawns at all locations
+        location-logic: RANDOM_1
+        locations: null
