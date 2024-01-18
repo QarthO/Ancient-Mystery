@@ -1,4 +1,4 @@
-package gg.quartzdev.ancientmystery.gui;
+package gg.quartzdev.ancientmystery.gui.items;
 
 import gg.quartzdev.ancientmystery.util.PdcUtil;
 import org.bukkit.DyeColor;
