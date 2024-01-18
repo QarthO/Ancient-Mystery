@@ -7,3 +7,6 @@ min-players: 2
 
 # Player health
 player-health: 200
+
+#
+start-location: 0

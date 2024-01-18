@@ -16,11 +16,15 @@ public enum Messages {
 
     //    Generic File
     FILE_CREATED("<prefix> <green>Created file: <yellow><file>"),
-    ERROR_CREATE_FILE("<prefix> Error creating file: <yellow><file>"),
-    ERROR_SAVE_FILE("<prefix> Error saving file: <yellow><file>"),
-    ERROR_CORRUPT_FILE("<prefix> <red>Error: Corrupt file: <yellow><file></yellow><newline>Please reset the file.");
+    ERROR_CREATE_FILE("<prefix> <red>Error creating file: <yellow><file>"),
+    ERROR_SAVE_FILE("<prefix> <red>Error saving file: <yellow><file>"),
+    ERROR_CORRUPT_FILE("<prefix> <red>Error: Corrupt file: <yellow><file></yellow><newline>Please reset the file."),
 
-//    Murderer
+//    Raid Se
+    ERROR_BOSS_SPAWN_LOCATION("<prefix> <red>Error: Encounter's boss spawn location not set"),
+    ERROR_RAID_NOT_FOUND("<prefix> <red>Error: Raid not found <raid-id>"),
+
+    END("");
 
 
     private final String message;

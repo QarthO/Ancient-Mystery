@@ -1,5 +1,7 @@
 package gg.quartzdev.ancientmystery.util;
 
+import net.kyori.adventure.text.Component;
+import net.kyori.adventure.text.format.TextDecoration;
 import org.bukkit.DyeColor;
 import org.bukkit.Material;
 import org.bukkit.block.banner.Pattern;
@@ -7,6 +9,7 @@ import org.bukkit.block.banner.PatternType;
 import org.bukkit.entity.Item;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.BannerMeta;
+import org.bukkit.inventory.meta.ItemMeta;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -44,6 +47,15 @@ public class ItemStackUtil {
         bannerMeta.setPatterns(patterns);
         banner.setItemMeta(bannerMeta);
         return banner;
+    }
+
+    public static ItemStack guardianMinionLoot(int count){
+        ItemStack item = new ItemStack(Material.GLOWSTONE_DUST, count);
+        ItemMeta itemMeta = item.getItemMeta();
+        Component component = Component.text("Charge Dust").decoration(TextDecoration.ITALIC, false);
+        itemMeta.displayName(component);
+        item.setItemMeta(itemMeta);
+        return item;
     }
 
 

@@ -12,6 +12,8 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.inventory.meta.SkullMeta;
 
+import java.util.UUID;
+
 public class GamesUI extends GamesInventory {
 
     public GamesUI(Player player){
@@ -27,7 +29,7 @@ public class GamesUI extends GamesInventory {
 
     public void fillGames(){
         int slot = 9;
-        for(Raid raid : this.gameManager.getGames()){
+        for(Raid raid : this.raidManager.getRaids()){
             Player player = raid.getCreator();
             ItemStack item = new ItemStack(Material.PLAYER_HEAD);
             SkullMeta skullMeta = (SkullMeta) item.getItemMeta();
@@ -60,5 +62,14 @@ public class GamesUI extends GamesInventory {
     @Override
     public void onClick(InventoryClickEvent event) {
         event.setCancelled(true);
+        if(event.getCurrentItem() == null){
+            return;
+        }
+        ItemStack clickedItem = event.getCurrentItem();
+        UUID gameId = clickedItem.getItemMeta().getPersistentDataContainer().get(this.plugin.gameKey, DataType.UUID);
+        if(gameId == null){
+            return;
+        }
+        this.raidManager.startRaid(gameId);
     }
 }

@@ -5,14 +5,13 @@ import gg.quartzdev.ancientmystery.gui.GamesUI;
 import gg.quartzdev.ancientmystery.util.Messages;
 import gg.quartzdev.ancientmystery.util.Sender;
 import org.bukkit.command.CommandSender;
-import org.bukkit.command.ConsoleCommandSender;
 import org.bukkit.entity.Player;
 
-public class CMDjoin extends qCMD {
+public class CMDraid extends qCMD {
 
     AncientMystery plugin;
 
-    public CMDjoin(String cmdName, String group) {
+    public CMDraid(String cmdName, String group) {
         super(cmdName, group);
         this.plugin = AncientMystery.instance;
     }

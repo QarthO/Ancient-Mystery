@@ -25,8 +25,8 @@ public class CommandManager extends Command {
 
         commandsMap.put("",         new CMD("version", "admin"));
         commandsMap.put("reload",   new CMDreload("reload", "admin"));
-        commandsMap.put("join",     new CMDjoin("join", "player"));
-        commandsMap.put("start",     new CMDstart("start", "player"));
+        commandsMap.put("raid",     new CMDraid("raid", "player"));
+        commandsMap.put("set",      new CMDset("set", "admin"));
 
         Bukkit.getCommandMap().register(name, this);
     }

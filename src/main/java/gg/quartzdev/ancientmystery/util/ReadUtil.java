@@ -1,17 +1,30 @@
 package gg.quartzdev.ancientmystery.util;
 
-import org.checkerframework.checker.units.qual.K;
+import org.bukkit.entity.EntityType;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 public class ReadUtil {
-    public static Number number(Object data){
+
+    public static @Nullable EntityType entityType(Object data){
+//        If data isn't found
+        if(data == null){
+            return null;
+        }
+
+        String rawData = data.toString();
+        try{
+           return EntityType.valueOf(rawData);
+        } catch(IllegalArgumentException exception){
+            return null;
+        }
+    }
+
+
+    public static @NotNull Number number(Object data){
 //       If data isn't found
         if(data == null){
             return 0;
-        }
-
-//        Try returning it as a double
-        if(data instanceof Double){
-            return (double) data;
         }
 
 //        Convert to string and try parsing

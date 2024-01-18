@@ -1,8 +1,13 @@
 package gg.quartzdev.ancientmystery.game;
 
+import gg.quartzdev.ancientmystery.AncientMystery;
+import gg.quartzdev.ancientmystery.game.encounters.guardian.EncGuardian;
+import gg.quartzdev.ancientmystery.util.Messages;
+import gg.quartzdev.ancientmystery.util.Sender;
 import org.bukkit.Bukkit;
 import org.bukkit.Difficulty;
 import org.bukkit.Location;
+import org.bukkit.entity.Guardian;
 import org.bukkit.entity.Player;
 
 import java.util.HashSet;
@@ -15,10 +20,9 @@ public class Raid {
     Difficulty difficulty;
     Player creator;
     Set<Player> players;
-    GameState gameState;
+    RaidState raidState;
     int MAX_PLAYERS;
-    int TIME_LIMIT; // seconds
-    int TIME_LEFT;
+    int TIME;
     Location joinLocation;
 
     public Raid(Difficulty difficulty, Player creator){
@@ -26,9 +30,10 @@ public class Raid {
         this.difficulty = difficulty;
         this.creator = creator;
         this.players = new HashSet<>();
+        this.addPlayer(creator);
+        this.joinLocation = AncientMystery.instance.config.getStartLocation();
         MAX_PLAYERS = 4;
-        TIME_LIMIT = 120;
-        TIME_LEFT = TIME_LIMIT;
+        TIME = 0;
     }
 
     public Player getCreator(){
@@ -39,8 +44,18 @@ public class Raid {
         return this.id;
     }
 
+
+
     public void start(){
-        gameState = GameState.RUNNING;
+        raidState = RaidState.RUNNING;
+        for(Player player : players){
+            player.teleportAsync(joinLocation);
+        }
+        new EncGuardian(this.id);
+    }
+
+    public void addPlayer(Player player){
+        this.players.add(player);
     }
 
     public void setJoinLocation(Location location){
@@ -53,16 +68,17 @@ public class Raid {
 
     public void finish(){
         Bukkit.getLogger().info("Game finsihed: " + id);
-        gameState = GameState.FINISHED;
+        raidState = RaidState.FINISHED;
     }
 
     public int tickTime(){
-        Bukkit.getLogger().info("Game: " + id + "Time: " + TIME_LEFT);
-        TIME_LEFT--;
-        if(TIME_LEFT < 0){
-            finish();
+        return TIME++;
+    }
+
+    public void broadcast(Messages message){
+        for(Player player : players){
+            Sender.message(player, message);
         }
-        return TIME_LEFT;
     }
 
 }

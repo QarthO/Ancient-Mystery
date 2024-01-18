@@ -1,7 +1,7 @@
 package gg.quartzdev.ancientmystery.gui;
 
 import gg.quartzdev.ancientmystery.AncientMystery;
-import gg.quartzdev.ancientmystery.game.GameManager;
+import gg.quartzdev.ancientmystery.game.RaidManager;
 import gg.quartzdev.ancientmystery.util.Loqqer;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.minimessage.MiniMessage;
@@ -16,12 +16,12 @@ public abstract class GamesInventory implements InventoryHolder {
     AncientMystery plugin;
     Inventory inventory;
     public Loqqer logger;
-    public GameManager gameManager;
+    public RaidManager raidManager;
 
     public GamesInventory(){
         this.plugin = AncientMystery.instance;
         this.logger = this.plugin.logger;
-        this.gameManager = this.plugin.gameManager;
+        this.raidManager = this.plugin.raidManager;
     }
 
     public void createInventory(int size, String titleMsg){
