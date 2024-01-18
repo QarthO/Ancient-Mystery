@@ -2,9 +2,8 @@ package gg.quartzdev.ancientmystery.gui;
 
 import com.jeff_media.morepersistentdatatypes.DataType;
 import gg.quartzdev.ancientmystery.game.Raid;
-import gg.quartzdev.ancientmystery.util.ItemStackUtil;
 import net.kyori.adventure.text.Component;
-import org.bukkit.DyeColor;
+import net.kyori.adventure.text.format.TextDecoration;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.event.inventory.InventoryClickEvent;
@@ -44,15 +43,15 @@ public class GamesUI extends GamesInventory {
 
     public void fillActionRow(){
 
-        ItemStack leftArrow = ItemStackUtil.leftArrow(DyeColor.RED);
-        this.getInventory().setItem(3, leftArrow);
-        ItemStack rightArrow = ItemStackUtil.rightArrow(DyeColor.RED);
-        this.getInventory().setItem(5, rightArrow);
+//        ItemStack leftArrow = ItemStackUtil.leftArrow(DyeColor.RED);
+//        this.getInventory().setItem(3, leftArrow);
+//        ItemStack rightArrow = ItemStackUtil.rightArrow(DyeColor.RED);
+//        this.getInventory().setItem(5, rightArrow);
 
 //        Middle (Start new Raid Item)
         ItemStack item = new ItemStack(Material.END_CRYSTAL);
         ItemMeta itemMeta = item.getItemMeta();
-        Component displayName = Component.text("Start New Raid");
+        Component displayName = Component.text("Start Raid").decoration(TextDecoration.ITALIC, false);
         itemMeta.displayName(displayName);
         item.setItemMeta(itemMeta);
         this.getInventory().setItem(4, item);

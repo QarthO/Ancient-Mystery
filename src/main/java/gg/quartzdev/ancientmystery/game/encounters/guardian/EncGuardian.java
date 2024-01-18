@@ -7,9 +7,7 @@ import gg.quartzdev.ancientmystery.game.encounters.EncounterState;
 import gg.quartzdev.ancientmystery.util.Messages;
 import gg.quartzdev.ancientmystery.util.PdcUtil;
 import org.bukkit.Location;
-import org.bukkit.NamespacedKey;
 import org.bukkit.entity.Entity;
-import org.bukkit.entity.EntityType;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
 
 import java.util.UUID;
@@ -19,36 +17,25 @@ public class EncGuardian extends Encounter {
     YMLguardian guardianConfig;
     double bossCurrentHealth;
     int currentShields;
+    Entity boss;
 
-    public EncGuardian(UUID gameId){
-        super(gameId);
+    public EncGuardian(UUID raidId){
+        super(raidId);
         this.guardianConfig = this.raidManager.guardianConfig;
-        this.spawnBoss();
     }
 
     public void spawnBoss(){
         Location bossSpawnLocation = this.guardianConfig.getBossSpawnLocation();
         if(bossSpawnLocation == null){
-            Raid raid = this.plugin.raidManager.getRaid(this.gameId);
-            if(raid == null){
-                this.plugin.logger.error(Messages.ERROR_RAID_NOT_FOUND.parse("raid-id", this.gameId.toString()));
-                return;
-            }
-            raid.broadcast(Messages.ERROR_BOSS_SPAWN_LOCATION);
+            this.raidManager.broadcast(this.raidId, Messages.ERROR_BOSS_SPAWN_LOCATION.get());
             return;
         }
-        Entity boss = this.guardianConfig.getBossSpawnLocation().getWorld().spawnEntity(this.guardianConfig.getBossSpawnLocation(), this.guardianConfig.getBossType());
-        PdcUtil.brandMob(this.plugin.gameKey, boss, this.gameId);
+        this.boss = this.guardianConfig.getBossSpawnLocation().getWorld().spawnEntity(this.guardianConfig.getBossSpawnLocation(), this.guardianConfig.getBossType());
+        PdcUtil.brandMob(this.boss, this.raidId);
     }
 
-    public void startRaid(){
+    public void start(){
         spawnBoss();
-    }
-
-    public void tasks(){
-
-
-
     }
 
     public void trySpawnBlaze(){
@@ -59,7 +46,7 @@ public class EncGuardian extends Encounter {
 
 //        Makes sure mob belongs to this raid
         UUID mobBrand = PdcUtil.getMobBrand(this.plugin.gameKey, event.getEntity());
-        if(mobBrand == null || mobBrand != this.gameId){
+        if(mobBrand == null || mobBrand != this.raidId){
             return;
         }
 

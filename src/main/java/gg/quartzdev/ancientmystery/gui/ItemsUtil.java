@@ -1,20 +1,19 @@
-package gg.quartzdev.ancientmystery.util;
+package gg.quartzdev.ancientmystery.gui;
 
-import net.kyori.adventure.text.Component;
-import net.kyori.adventure.text.format.TextDecoration;
+import gg.quartzdev.ancientmystery.util.PdcUtil;
 import org.bukkit.DyeColor;
 import org.bukkit.Material;
 import org.bukkit.block.banner.Pattern;
 import org.bukkit.block.banner.PatternType;
-import org.bukkit.entity.Item;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.BannerMeta;
 import org.bukkit.inventory.meta.ItemMeta;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
-public class ItemStackUtil {
+public class ItemsUtil {
 
     static final Material backgroundBanner = Material.BLACK_BANNER;
     static final DyeColor backgroundColor = DyeColor.BLACK;
@@ -49,14 +48,20 @@ public class ItemStackUtil {
         return banner;
     }
 
-    public static ItemStack guardianMinionLoot(int count){
-        ItemStack item = new ItemStack(Material.GLOWSTONE_DUST, count);
+    public static ItemStack startRaid(UUID raidId){
+        ItemStack item = new ItemStack(Material.END_CRYSTAL);
         ItemMeta itemMeta = item.getItemMeta();
-        Component component = Component.text("Charge Dust").decoration(TextDecoration.ITALIC, false);
-        itemMeta.displayName(component);
+        PdcUtil.brandItemMeta(itemMeta, raidId);
         item.setItemMeta(itemMeta);
         return item;
     }
 
+    public static ItemStack leaveRaid(UUID raidId){
+        ItemStack item = new ItemStack(Material.BARRIER);
+        ItemMeta itemMeta = item.getItemMeta();
+        PdcUtil.brandItemMeta(itemMeta, raidId);
+        item.setItemMeta(itemMeta);
+        return item;
+    }
 
 }

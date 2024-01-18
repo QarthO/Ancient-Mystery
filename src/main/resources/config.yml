@@ -9,4 +9,4 @@ min-players: 2
 player-health: 200
 
 #
-start-location: 0
+raid-start-location: {}

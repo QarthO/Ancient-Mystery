@@ -5,8 +5,4 @@ raids:
     state: gamestate
     encounter: guardian
     time-left: 21312
-    players:
-      - qartho
-      - beemo
-      - bob
-      - jonny
+    players: []

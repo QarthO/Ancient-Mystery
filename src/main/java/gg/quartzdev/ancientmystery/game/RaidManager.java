@@ -2,6 +2,7 @@ package gg.quartzdev.ancientmystery.game;
 
 import gg.quartzdev.ancientmystery.AncientMystery;
 import gg.quartzdev.ancientmystery.data.YMLguardian;
+import gg.quartzdev.ancientmystery.util.Loqqer;
 import gg.quartzdev.ancientmystery.util.Messages;
 import org.bukkit.Bukkit;
 import org.bukkit.Difficulty;
@@ -16,11 +17,13 @@ import java.util.concurrent.TimeUnit;
 public class RaidManager {
 
     private final AncientMystery plugin;
+    private final Loqqer logger;
     private final HashMap<UUID, Raid> raids;
     public final YMLguardian guardianConfig;
 
     public RaidManager(){
         this.plugin = AncientMystery.instance;
+        this.logger = plugin.logger;
         this.raids = new HashMap<>();
         this.guardianConfig = new YMLguardian("encounter-guardian.yml");
     }
@@ -60,10 +63,19 @@ public class RaidManager {
     public void startRaid(UUID raidId){
         Raid raid = raids.get(raidId);
         if(raid == null){
-            this.plugin.logger.error(Messages.ERROR_RAID_NOT_FOUND.parse("raid-id", raidId.toString()));
+            plugin.logger.error(Messages.ERROR_RAID_NOT_FOUND.parse("raid-id", raidId.toString()));
             return;
         }
         raid.start();
+    }
+
+    public void broadcast(UUID raidId, String msg){
+        Raid raid = this.getRaid(raidId);
+        if(raid == null){
+            logger.error(Messages.ERROR_RAID_NOT_FOUND.parse("raid-id", raidId.toString()));
+            return;
+        }
+        raid.broadcast(Messages.ERROR_BOSS_SPAWN_LOCATION.get());
     }
 
     public void loadEncountersConfig(){

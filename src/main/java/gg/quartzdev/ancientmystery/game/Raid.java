@@ -7,7 +7,6 @@ import gg.quartzdev.ancientmystery.util.Sender;
 import org.bukkit.Bukkit;
 import org.bukkit.Difficulty;
 import org.bukkit.Location;
-import org.bukkit.entity.Guardian;
 import org.bukkit.entity.Player;
 
 import java.util.HashSet;
@@ -23,7 +22,7 @@ public class Raid {
     RaidState raidState;
     int MAX_PLAYERS;
     int TIME;
-    Location joinLocation;
+    Location raidStartLocation;
 
     public Raid(Difficulty difficulty, Player creator){
         this.id = UUID.randomUUID();
@@ -31,7 +30,7 @@ public class Raid {
         this.creator = creator;
         this.players = new HashSet<>();
         this.addPlayer(creator);
-        this.joinLocation = AncientMystery.instance.config.getStartLocation();
+        this.raidStartLocation = AncientMystery.instance.config.getStartLocation();
         MAX_PLAYERS = 4;
         TIME = 0;
     }
@@ -44,25 +43,24 @@ public class Raid {
         return this.id;
     }
 
-
-
     public void start(){
         raidState = RaidState.RUNNING;
         for(Player player : players){
-            player.teleportAsync(joinLocation);
+            player.teleportAsync(raidStartLocation);
         }
-        new EncGuardian(this.id);
+        EncGuardian firstEncounter = new EncGuardian(this.id);
+        firstEncounter.start();
     }
 
     public void addPlayer(Player player){
         this.players.add(player);
     }
 
-    public void setJoinLocation(Location location){
-        this.joinLocation = location;
+    public void setRaidStartLocation(Location location){
+        this.raidStartLocation = location;
     }
 
-    public Location getJoinLocation(){
+    public Location getRaidStartLocation(){
         return null;
     }
 
@@ -75,7 +73,7 @@ public class Raid {
         return TIME++;
     }
 
-    public void broadcast(Messages message){
+    public void broadcast(String message){
         for(Player player : players){
             Sender.message(player, message);
         }

@@ -3,8 +3,8 @@ encounter:
       type: ELDER_GUARDIAN
       hp: 80 # default
       shields: 5
-      spawn-location: null
-#    At this number of minions spawned players start to recieve negative effects
+      spawn-location: {}
+#    At this number of minions spawned players start to receive negative effects
     mob-threshold:
       count: 10
       effects:
@@ -30,7 +30,7 @@ encounter:
 #        ALL:       Spawns at all locations
         location-logic: RANDOM_1
         locations: []
-    respawn-anchor-locations: null
+    respawn-anchor-locations: {}
     crystal-spawn:
       interval: 5
       count: 1
