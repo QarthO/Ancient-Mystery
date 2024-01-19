@@ -96,7 +96,7 @@ public class Confiq {
     }
 
     private Location startLocation;
-    private final String PATH_START_LOCATION = "start-location";
+    private final String PATH_START_LOCATION = "raid-start-location";
 
     public void loadStartLocation(){
         this.startLocation = this.file.getLocation(this.PATH_START_LOCATION);

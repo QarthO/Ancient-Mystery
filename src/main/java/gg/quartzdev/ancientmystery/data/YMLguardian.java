@@ -12,24 +12,10 @@ public class YMLguardian extends YML{
 
     public void loadAll(){
         this.loadBossHp();
-        this.loadBossType();
         this.loadBossSpawnLocation();
     }
 
-    String PATH_BOSS_TYPE = "encounter.boss.type";
-    EntityType bossType = EntityType.ELDER_GUARDIAN;
-    public void loadBossType(){
-        this.bossType = ReadUtil.entityType(this.config.get(this.PATH_BOSS_TYPE));
-    }
-    public EntityType getBossType(){
-        return this.bossType;
-    }
-    public void setBossType(EntityType type){
-        this.bossType = type;
-        this.config.set(this.PATH_BOSS_TYPE, type.name());
-    }
-
-    String PATH_BOSS_HP = "encounter.boss.hp";
+    String PATH_BOSS_HP = "boss.hp";
     int bossHp = 80;
     public void loadBossHp(){
         this.bossHp = ReadUtil.number(this.config.get(this.PATH_BOSS_HP)).intValue();
@@ -43,7 +29,7 @@ public class YMLguardian extends YML{
         this.saveFile();
     }
 
-    String PATH_BOSS_SPAWN_LOCATION = "encounter.boss.spawn-location";
+    String PATH_BOSS_SPAWN_LOCATION = "boss.spawn-location";
     Location bossSpawnLocation;
     public void loadBossSpawnLocation(){
         this.bossSpawnLocation = this.config.getLocation(this.PATH_BOSS_SPAWN_LOCATION);

@@ -8,7 +8,6 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.persistence.PersistentDataContainer;
 
-import javax.xml.crypto.Data;
 import java.util.UUID;
 
 public class PdcUtil {
@@ -16,12 +15,12 @@ public class PdcUtil {
     final static NamespacedKey raidKey = new NamespacedKey(AncientMystery.instance, "raid-id");
     final static NamespacedKey dupeKey = new NamespacedKey(AncientMystery.instance, "dupe-fix");
 
-    public static void brandMob(Entity entity, UUID raidId){
+    public static void brandEntity(Entity entity, UUID raidId){
         PersistentDataContainer pdc = entity.getPersistentDataContainer();
         pdc.set(raidKey, DataType.UUID, raidId);
     }
 
-    public static UUID getMobBrand(Entity entity){
+    public static UUID getEntityBrand(Entity entity){
         PersistentDataContainer pdc = entity.getPersistentDataContainer();
         return pdc.get(raidKey, DataType.UUID);
     }

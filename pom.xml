@@ -17,6 +17,7 @@
     </properties>
 
     <build>
+        <finalName>${project.name}-${project.version}</finalName>
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
@@ -56,7 +57,7 @@
 <!--                    Mac-->
 <!--                    <outputDirectory>/Users/derek/Minecraft/Server/Local Dev Server/plugins/update</outputDirectory>-->
 <!--                    Windows-->
-                    <outputDirectory>C:\Users\derek\Documents\Minecraft\Server\Pufferfish 1.20.4\plugins\update</outputDirectory>
+<!--                    <outputDirectory>C:\Users\derek\Documents\Minecraft\Server\Pufferfish 1.20.4\plugins\update</outputDirectory>-->
                 </configuration>
             </plugin>
         </plugins>

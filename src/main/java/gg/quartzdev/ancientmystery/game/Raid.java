@@ -2,12 +2,14 @@ package gg.quartzdev.ancientmystery.game;
 
 import gg.quartzdev.ancientmystery.AncientMystery;
 import gg.quartzdev.ancientmystery.game.encounters.guardian.EncGuardian;
-import gg.quartzdev.ancientmystery.util.Messages;
+import gg.quartzdev.ancientmystery.util.PdcUtil;
 import gg.quartzdev.ancientmystery.util.Sender;
 import org.bukkit.Bukkit;
 import org.bukkit.Difficulty;
 import org.bukkit.Location;
 import org.bukkit.entity.Player;
+import org.bukkit.event.entity.EntityDamageEvent;
+import org.bukkit.event.entity.EntityExplodeEvent;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -23,6 +25,8 @@ public class Raid {
     int MAX_PLAYERS;
     int TIME;
     Location raidStartLocation;
+
+    EncGuardian firstEncounter;
 
     public Raid(Difficulty difficulty, Player creator){
         this.id = UUID.randomUUID();
@@ -47,9 +51,17 @@ public class Raid {
         raidState = RaidState.RUNNING;
         for(Player player : players){
             player.teleportAsync(raidStartLocation);
+            PdcUtil.brandEntity(player, id);
         }
-        EncGuardian firstEncounter = new EncGuardian(this.id);
-        firstEncounter.start();
+        firstEncounter = new EncGuardian(this.id);
+        firstEncounter.start(players);
+    }
+
+    public void handleEvents(EntityDamageEvent event){
+        firstEncounter.onBossDamage(event);
+    }
+    public void handleEvents(EntityExplodeEvent event){
+        firstEncounter.onCrystalExplosion(event);
     }
 
     public void addPlayer(Player player){
