@@ -20,11 +20,13 @@ jobs:
     - name: Build with Maven
       run: |
         artifactPath="$(pwd)/target"
-        echo "artifactPath=$(pwd)/target" >> $GITHUB_ENV
-        echo "artifactName=$(mvn help:evaluate -Dexpression=project.build.finalName -q -DforceStdout)" >> $GITHUB_ENV
-        echo git_hash=$(git rev-parse --short "$GITHUB_SHA") >> $GITHUB_ENV
+        artifactName="$(mvn help:evaluate -Dexpression=project.build.finalName -q -DforceStdout)"
+        git_hash=$(git rev-parse --short "$GITHUB_SHA")
+        echo "artifactPath=${artifactPath}" >> $GITHUB_ENV
+        echo "artifactName=${artifactName}" >> $GITHUB_ENV
+        echo git_hash=${git_hash} >> $GITHUB_ENV
         mvn clean package
-        mv "${artifactPath}/target/$(mvn help:evaluate -Dexpression=project.build.finalName -q -DforceStdout).jar" "$(pwd)/target/$(mvn help:evaluate -Dexpression=project.build.finalName -q -DforceStdout)-$(git rev-parse --short "$GITHUB_SHA").jar"
+        mv "${artifactPath}/${artifactName}.jar" "${artifactPath}/${artifactName}-${git_hash}.jar"
         
     - uses: actions/upload-artifact@v3
       with:
