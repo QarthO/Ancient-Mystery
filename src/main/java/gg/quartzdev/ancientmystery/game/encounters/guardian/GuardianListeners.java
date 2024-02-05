@@ -9,6 +9,7 @@ import org.bukkit.block.data.type.RespawnAnchor;
 import org.bukkit.entity.*;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
+import org.bukkit.event.block.BlockExplodeEvent;
 import org.bukkit.event.entity.*;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.ItemStack;
@@ -68,15 +69,22 @@ public class GuardianListeners implements Listener {
             return;
         }
         if(anchor.getCharges() == anchor.getMaximumCharges()){
+            raid.handleEvents(event);
             return;
         }
         Sender.message(player, "filling up anchor");
     }
 
     @EventHandler
+    public void onAnchorExplosion(BlockExplodeEvent event){
+        event.blockList().clear();
+    }
+
+    @EventHandler
     public void onCrystalExplosion(EntityExplodeEvent event){
         //        Makes sure mob belongs to this raid
         UUID mobBrand = PdcUtil.getEntityBrand(event.getEntity());
+        event.blockList().clear();
         if (mobBrand == null) {
             return;
         }
@@ -85,7 +93,7 @@ public class GuardianListeners implements Listener {
             logger.error(Messages.ERROR_RAID_NOT_FOUND.parse("raid-id", mobBrand.toString()));
             return;
         }
-        raid.handleEvents(event);
+//        raid.handleEvents(event);
     }
 
     @EventHandler
@@ -117,7 +125,6 @@ public class GuardianListeners implements Listener {
         }
         return raid;
     }
-
 
 
 }

@@ -1,16 +1,28 @@
 boss:
   type: ELDER_GUARDIAN
-  hp: 80 # default
-  shields: 5
+  hp: 80 # 80 is vanilla default
+#  delay in seconds the shield recharges
+  shield-recharge-delay: 5
   spawn-location: {}
-#    At this number of minions spawned players start to receive negative effects
+
+#  At this number of minions spawned players start to receive negative effects
+#  example: at 10 or more mobs, players receive poison 2
 mob-threshold:
   count: 10
   effects:
     - POISON:2
+
+# end crystals
+crystals:
+#  how often they should spawn (in seconds)
+  spawn-interval: 10
+#  how many spawn at each interval
+  count: 1
+  locations: {}
+
 minion:
   type: BLAZE
-  hp: 20 # default
+  hp: 20 # 20 is vanilla default
 #  how many glowstone dust should drop on kill
   loot-count: 1
   spawn:
@@ -21,9 +33,3 @@ minion:
 #        how large of an area around the spawn location should the mob spawn in
     radius: 30
     location: {}
-respawn-anchor-locations: {}
-crystal-spawn:
-  interval: 5
-  count: 1
-  radius: 3
-  locations: []

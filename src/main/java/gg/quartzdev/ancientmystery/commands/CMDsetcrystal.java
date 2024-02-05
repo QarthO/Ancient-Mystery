@@ -4,15 +4,13 @@ import gg.quartzdev.ancientmystery.AncientMystery;
 import gg.quartzdev.ancientmystery.game.RaidManager;
 import gg.quartzdev.ancientmystery.util.Messages;
 import gg.quartzdev.ancientmystery.util.Sender;
-import org.bukkit.Difficulty;
-import org.bukkit.Location;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
-public class CMDset extends qCMD {
+public class CMDsetcrystal extends qCMD {
     RaidManager raidManager;
     AncientMystery plugin;
-    public CMDset(String cmdName, String group) {
+    public CMDsetcrystal(String cmdName, String group) {
         super(cmdName, group);
         this.raidManager = AncientMystery.instance.raidManager;
         this.plugin = AncientMystery.instance;
@@ -24,10 +22,9 @@ public class CMDset extends qCMD {
             Sender.message(sender, Messages.ERROR_PLAYER_ONLY_COMMAND);
             return false;
         }
-//        Location location = player.getLocation();
-//        this.plugin.config.setStartLocation(location);
-        this.raidManager.create(Difficulty.NORMAL, player);
-        Sender.message(player, "set spawn location of guardian boss");
+        this.plugin.raidManager.guardianConfig.addCrystalLocation(player.getLocation());
+        int crystalCount = this.plugin.raidManager.guardianConfig.getCrystalLocations().size();
+        Sender.message(player, Messages.SET_GUARDIAN_CRYSTAL.parse("#", "" + crystalCount));
         return true;
     }
 

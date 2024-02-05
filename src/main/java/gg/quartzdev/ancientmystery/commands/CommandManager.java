@@ -23,10 +23,16 @@ public class CommandManager extends Command {
         aliases.add("am");
         super.setAliases(aliases);
 
-        commandsMap.put("",         new CMD("version", "admin"));
-        commandsMap.put("reload",   new CMDreload("reload", "admin"));
-        commandsMap.put("raid",     new CMDraid("raid", "player"));
-        commandsMap.put("set",      new CMDset("set", "admin"));
+        commandsMap.put("",                 new CMD("version", "admin"));
+        commandsMap.put("reload",           new CMDreload("reload", "admin"));
+        commandsMap.put("join",             new CMDjoin("join", "admin"));
+        commandsMap.put("raid",             new CMDraid("raid", "player"));
+        commandsMap.put("list",             new CMDlist("list", "admin"));
+        commandsMap.put("forceend",         new CMDforceend("forceend", "admin"));
+        commandsMap.put("clearcrystals",    new CMDclearcrystals("clearcrystals", "admin"));
+        commandsMap.put("setboss",          new CMDsetboss("setboss", "admin"));
+        commandsMap.put("setcrystal",       new CMDsetcrystal("setcrystal", "admin"));
+        commandsMap.put("setstart",         new CMDsetstart("setstart", "admin"));
 
         Bukkit.getCommandMap().register(name, this);
     }

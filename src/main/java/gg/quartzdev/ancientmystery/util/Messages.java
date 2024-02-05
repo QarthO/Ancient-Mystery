@@ -23,7 +23,13 @@ public enum Messages {
 //    Raid Se
     ERROR_BOSS_SPAWN_LOCATION("<prefix> <red>Error: Encounter's boss spawn location not set"),
     ERROR_RAID_NOT_FOUND("<prefix> <red>Error: Raid not found <raid-id>"),
-
+    SET_GUARDIAN_BOSS("<prefix> Elder-Guardian: Boss location set"),
+    SET_GUARDIAN_START("<prefix> Elder-Guardian: Start location set"),
+    SET_GUARDIAN_CRYSTAL("<prefix> Elder-Guardian: Crystal <#> location set"),
+    CLEAR_GUARDIAN_CRYSTAL("<prefix> Elder-Guardian: Crystals cleared"),
+    JOINED_RAIDING_PARTY("<prefix> <green>You joined the raiding party"),
+    NO_RAIDING_PARTY_FOUND("<prefix> <red>Error: No raiding party found"),
+    ERROR_ALREADY_IN_RAID("<prefix> <red>Error: Already apart of a raid"),
     END("");
 
 

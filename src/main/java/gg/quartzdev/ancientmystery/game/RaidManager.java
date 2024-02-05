@@ -4,6 +4,8 @@ import gg.quartzdev.ancientmystery.AncientMystery;
 import gg.quartzdev.ancientmystery.data.YMLguardian;
 import gg.quartzdev.ancientmystery.util.Loqqer;
 import gg.quartzdev.ancientmystery.util.Messages;
+import gg.quartzdev.ancientmystery.util.PdcUtil;
+import gg.quartzdev.ancientmystery.util.Sender;
 import org.bukkit.Bukkit;
 import org.bukkit.Difficulty;
 import org.bukkit.entity.Player;
@@ -36,10 +38,16 @@ public class RaidManager {
         return raids.get(raidId);
     }
 
-    public void create(Difficulty difficulty, Player creator){
+    public Raid create(Difficulty difficulty, Player creator){
+        UUID raidId = PdcUtil.getEntityBrand(creator);
+        if(raidId != null && getRaid(raidId) != null){
+            Sender.message(creator, Messages.ERROR_ALREADY_IN_RAID);
+            return getRaid(raidId);
+        }
         Raid raid = new Raid(difficulty, creator);
         raids.put(raid.id, raid);
         raid.raidState = RaidState.IDLE;
+        return raid;
     }
 
     public void delete(UUID gameId){

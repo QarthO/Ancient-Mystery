@@ -1,5 +1,6 @@
 package gg.quartzdev.ancientmystery.game;
 
+import com.google.common.collect.Lists;
 import gg.quartzdev.ancientmystery.AncientMystery;
 import gg.quartzdev.ancientmystery.game.encounters.guardian.EncGuardian;
 import gg.quartzdev.ancientmystery.util.PdcUtil;
@@ -10,17 +11,16 @@ import org.bukkit.Location;
 import org.bukkit.entity.Player;
 import org.bukkit.event.entity.EntityDamageEvent;
 import org.bukkit.event.entity.EntityExplodeEvent;
+import org.bukkit.event.player.PlayerInteractEvent;
 
-import java.util.HashSet;
-import java.util.Set;
-import java.util.UUID;
+import java.util.*;
 
 public class Raid {
 
     UUID id;
     Difficulty difficulty;
     Player creator;
-    Set<Player> players;
+    List<Player> players;
     RaidState raidState;
     int MAX_PLAYERS;
     int TIME;
@@ -32,19 +32,23 @@ public class Raid {
         this.id = UUID.randomUUID();
         this.difficulty = difficulty;
         this.creator = creator;
-        this.players = new HashSet<>();
+        this.players = new ArrayList<>();
         this.addPlayer(creator);
         this.raidStartLocation = AncientMystery.instance.config.getStartLocation();
         MAX_PLAYERS = 4;
         TIME = 0;
     }
 
+    public UUID getId(){
+        return this.id;
+    }
+
     public Player getCreator(){
         return this.creator;
     }
 
-    public UUID getId(){
-        return this.id;
+    public List<Player> getRaidParty(){
+        return Lists.newArrayList(players);
     }
 
     public void start(){
@@ -61,11 +65,16 @@ public class Raid {
         firstEncounter.onBossDamage(event);
     }
     public void handleEvents(EntityExplodeEvent event){
-        firstEncounter.onCrystalExplosion(event);
+//        firstEncounter.onCrystalExplosion(event);
+    }
+    public void handleEvents(PlayerInteractEvent event){
+        firstEncounter.breakShield();
     }
 
+
     public void addPlayer(Player player){
-        this.players.add(player);
+        players.add(player);
+        PdcUtil.brandEntity(player, getId());
     }
 
     public void setRaidStartLocation(Location location){
@@ -77,7 +86,8 @@ public class Raid {
     }
 
     public void finish(){
-        Bukkit.getLogger().info("Game finsihed: " + id);
+        Bukkit.getLogger().info("Game finished: " + id);
+        firstEncounter.finish();
         raidState = RaidState.FINISHED;
     }
 
